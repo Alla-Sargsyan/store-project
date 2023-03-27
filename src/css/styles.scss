@@ -53,6 +53,10 @@ body {
 }
 
 .hoveredicon {
+
+	svg, a {
+		transition: $trs;
+	}
 	svg {
 		path {
 			transition: $trs;
@@ -63,6 +67,26 @@ body {
 		svg {
 			path {
 				stroke: $red;
+			}
+		}
+	}
+
+	&:hover {
+		span{
+			background: $red !important;
+		}
+	}
+
+	&.header__menu__item{
+		&:hover {
+			a{
+				color: $red !important;
+			}
+
+			svg{
+				path{
+					fill: $red;
+				}
 			}
 		}
 	}
@@ -160,13 +184,6 @@ nav {
 			display: flex;
 			gap: 48px;
 
-            .mobile__menu__nav{
-                display: none;
-                cursor: pointer;
-            }
-            .nav__menu__items{
-                display: flex;
-                gap: 48px;
 			.nav__menu__item {
 				a {
 					position: relative;
@@ -193,8 +210,9 @@ nav {
 				}
 			}
 
-            }
-
+			form{
+				display: none;
+			}
 		}
 
 		.nav__icons {
@@ -248,144 +266,308 @@ nav {
 						}
 					}
 				}
+
+				.burger__menu{
+					display: none;
+					flex-direction: column;
+					justify-content: space-between;
+					align-content: space-between;
+					width:32px ;
+					height: 24px;
+
+					span{
+						display: block;
+						background: $black;
+						width: 100%;
+						height: 2px;
+						border-radius:$br;
+						transition: $trs;
+					}
+
+					&.active{
+						span:nth-child(1){
+							transform: rotate(-45deg) translate(-9px,5.5px);
+						}
+
+						span:nth-child(2){
+							display: none;
+						}
+
+						span:nth-child(3){
+							transform: rotate(45deg) translate(-9px,-6.5px);
+						}
+					}
+				}
 			}
 		}
 
-        @media screen and (max-width: $tabletL){
-            .nav__logo{
-                h2 {
-                    a {   
-                        font-size: 22px;  
-                    }
-                }
-            }
-
+          @media screen and (max-width: $tabletL){
             .nav__menu{
-                .nav__menu__items{
-                    gap: 32px;
-                }
+				gap: 24px;
             }
             .nav__icons{
                 form{
                     input{
-                        width: 220px;  
+                        width: 200px; 
+						padding: 7px 45px 7px 10px; 
                     }
                 }
-                gap: 10px;
             }
   
           }
 
           @media screen and (max-width: $tabletM){
-            .nav__logo{
-                h2 {
-                    a {   
-                        font-size: 20px;  
-                    }
-                }
-            }
-
-            .nav__menu{
-                .nav__menu__items{
-                    gap: 20px;
-                }
-            }
             .nav__icons{
                 form{
                     input{
-                        padding: 7px 10px 7px 10px;
-                        width: 200px; 
-                        font-size: 8px; 
+                        width: 150px; 
                     }
                 }
-                gap: 8px;
             }
   
           }
 
           @media screen and (max-width:$mobileL){
-            .nav__logo{
-                h2 {
-                    a {   
-                        font-size: 20px;  
-                    }
-                }
-            }
+			margin-top: 8px;
+			margin-bottom: 8px;
+			position: relative;
 
+			.nav__icons{
+				form{
+					display: none;
+				}
+
+				.nav__icons__end{
+					.burger__menu{
+					display: flex;
+					cursor: pointer;
+				}
+			  }	
+			}
             .nav__menu{
-                .nav__menu__items{
-                    gap: 10px;
- 
-                }
+				display: none;
+				position: absolute;
+				flex-direction: column;
+				background: #fff;
+				width: 100%;
+				left: 0;
+				top: 85px;
+				gap:0px;
+
+				.nav__menu__item{
+					border-bottom: 0.5px solid #eee;
+
+					a{
+						display: block;
+						padding: 32px;
+						transition: $trs;
+
+						&::before{
+							display: none;
+						}
+
+						&::hover {
+							background: #eee;
+						}
+					}
+
+					&:nth-child(4) {
+						border-bottom: none;
+					}
+				}
+				form{
+					display: flex;
+					padding:16px 32px;
+
+					input {
+						background: $mediumGray;
+						border-radius: $br 0px 0px $br;
+						padding: 7px 45px 7px 20px;
+						border: none;
+						outline: 0;
+						width: 100%;
+						height: 38px;
+						font-size: 14px;
+						color: #00000080;
+	
+						&::placeholder {
+							font-size: 12px;
+							color: #00000080;
+						}
+					}
+					button {
+						border: none;
+						border-radius: 0px $br $br 0px;
+						background: $mediumGray;
+						cursor: pointer;
+						font-size: 14px;
+					}
+				}
             }
-            .nav__icons{
-                form{
-                    input{
-                        padding: 7px 2px 7px 2px;
-                        width: 50px; 
-                        
-                        &::placeholder {
-                            color:$mediumGray;
-                        }
-
- 
-                    }
-                }
-                gap: 5px;
-            }
-  
-          }
-
-          @media screen and (max-width: $mobileM){
-            .nav__menu{
-                .nav__menu__items{
-                   display: none;
-                }
-
-                .mobile__menu__nav{
-                    display: block;
-                    align-items: center;
-                    cursor: pointer;
-                }
-            }
-          }
-
-          @media screen and (max-width: $mobileXS){
-
-            .nav__logo{
-                h2 {
-                    a {   
-                        font-size: 18px;  
-                    }
-                }
-            }
-            .nav__menu{
-                .nav__menu__items{
-                   display: none;
-                }
-
-                .mobile__menu__nav{
-                    display: block;
-                    align-items: center;
-                    cursor: pointer;
-                }
-            }
-
-            .nav__icons{
-                form{
-                    input{
-                        width: 28px; 
-                    }
-                }
-
-                .nav__icons__end{
-                    gap: 4px;
-                }
-            }
-  
           }
 	}
 }
+
+header{
+	margin-top: 40px;
+
+	.container{
+		display: flex;
+		gap:64px;
+
+		.header__menu {
+			position: relative;
+
+			.header__menu__item {
+				display: flex;
+				justify-content:space-between;
+				margin-bottom: 16px;
+				width: 217px;
+				height: 24px;
+
+				a{
+				 font-size: 16px;
+				 color: $black;
+				 text-decoration: none;	
+				 white-space: nowrap;
+				 width: 100%;
+				 line-height: 24px;
+				}
+				.header__menu__item__open{
+					cursor: pointer;
+				}
+
+				&:last-child {
+					margin-bottom: 0px;
+				}
+
+			}
+
+			&::after {
+				display: block;
+				content:"";
+				width: 0.5px;
+				height: calc(100% + 40px);
+				position: absolute;
+				background: $black;
+				top: -40px;
+				right: -16px;
+				opacity: 0.3;		
+			}
+
+			.burger__menu__header{
+				display: none;
+				flex-direction: column;
+				justify-content: space-around;
+				align-content: space-between;
+				width:32px ;
+				height: 24px;
+
+				span{
+					display: block;
+					background: $black;
+					width: 100%;
+					height: 2px;
+					border-radius:$br;
+					transition: $trs;
+				}
+
+				&.active{
+					span:nth-child(1){
+						transform: rotate(-45deg) translate(-9px,5.5px);
+					}
+
+					span:nth-child(2){
+						display: none;
+					}
+
+					span:nth-child(3){
+						transform: rotate(45deg) translate(-9px,-6.5px);
+					}
+				}
+			}
+
+		}
+
+		.header__slider{
+			width: 892px;
+			height: 344px;
+
+			img{
+				display: block;
+				width: 100%;
+				height: auto;
+				object-fit: cover;
+			}
+		}
+
+		@media screen and (max-width: $tabletL){
+			gap: 24px;
+			.header__menu{
+			.header__menu__item {
+				margin-bottom: 8px;
+				width: 160px;
+				height: 20px;
+
+				a{
+					font-size: 14px;
+				}
+			}
+
+			&::after {
+				display: none;
+			}
+			}
+
+		}
+
+		@media screen and (max-width: $tabletM){
+			margin-top:-20px ;
+			gap: 16px;
+			.header__menu{
+			.header__menu__item {
+				
+				margin-bottom: 6px;
+				width: 115px;
+				height: 16px;
+
+				a{
+					font-size: 10px;
+				}
+
+				svg{
+					width: 5px;
+					height: 10px;
+				}
+			}
+
+			&::after {
+				display: none;
+			}
+			}
+
+		}
+
+		@media screen and (max-width: $tabletM){
+			.header__menu{
+				.header__menu__item {
+					display: none;
+				}
+				.burger__menu__header{
+					display: flex;
+					width: 20px;
+				}
+				}
+		}
+	}
+}
+
+
+
+
+
+
+
 
 
 * {
