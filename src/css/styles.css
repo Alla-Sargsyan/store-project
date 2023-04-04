@@ -524,6 +524,9 @@ main .container .items__template__section {
   margin-bottom: 70px;
   padding-bottom: 70px;
 }
+main .container .items__template__section:last-child {
+  border-bottom: unset;
+}
 main .container .items__template__section .its__category__title {
   font-size: 16px;
   font-weight: 600;

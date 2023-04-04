@@ -656,6 +656,10 @@ main{
 			margin-bottom: 70px;
 			padding-bottom: 70px;
 
+			&:last-child{
+				border-bottom:unset;
+			}
+
 			.its__category__title{
 				font-size: 16px;
 				font-weight: 600;
@@ -984,7 +988,7 @@ main{
 
 			.redBtn.bottom{
 				margin: 60px auto 0px auto;
-			}
+			} 
 		}
 	}
 }
